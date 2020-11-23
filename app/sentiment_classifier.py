@@ -4,6 +4,7 @@ from pathlib import Path
 import re
 import string
 from typing import List
+from config import BASE_PATH
 
 
 class SentimentClassifier:
@@ -11,7 +12,7 @@ class SentimentClassifier:
 
     def __init__(self) -> None:
         self.model = tf.keras.models.load_model(
-            f"{Path.cwd()}/sentiment_model",
+            f"{BASE_PATH}/sentiment_model",
             compile=False,
             custom_objects={"custom_standardization": self.custom_standardization})
 
@@ -27,4 +28,4 @@ class SentimentClassifier:
 
     def predict(self, input: List[str]):
         predictions = self.model.predict(np.array([input]))
-        return [ prediction[0] for prediction in predictions]
+        return [prediction[0] for prediction in predictions]

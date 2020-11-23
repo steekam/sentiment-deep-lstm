@@ -1,4 +1,4 @@
-from src.sentiment_classifier import SentimentClassifier
+from app.sentiment_classifier import SentimentClassifier
 
 def test_model_can_predict():
     classifier = SentimentClassifier()

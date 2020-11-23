@@ -1,23 +1,15 @@
 from typing import List
 from fastapi import FastAPI
-from pydantic import BaseModel
-from src.sentiment_classifier import SentimentClassifier
-
-
-class BaseComment(BaseModel):
-    id: str
-    body_html: str
-
-
-class ClassifiedComment(BaseComment):
-    sentiment_score: float
+from app.schemas import Comment, ClassifiedComment
+from app.sentiment_classifier import SentimentClassifier
 
 app = FastAPI()
 
 classifier = SentimentClassifier()
 
+
 @app.post("/classify", response_model=List[ClassifiedComment])
-async def classify_comments(comments: List[BaseComment]):
+async def classify_comments(comments: List[Comment]):
     comment_bodies = [comment.body_html for comment in comments]
     predictions = classifier.predict(comment_bodies)
     return [ClassifiedComment(**comment.dict(), sentiment_score=score) for comment, score in zip(comments, predictions)]

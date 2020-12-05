@@ -27,5 +27,5 @@ class SentimentClassifier:
         return tf.strings.strip(stripped_newline_chars)
 
     def predict(self, input: List[str]):
-        predictions = self.model.predict(np.array([input]))
+        predictions = self.model.predict(np.array(input))
         return [prediction[0] for prediction in predictions]

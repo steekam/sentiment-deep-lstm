@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "sentiment-deep-lstm"
+name = "sentiment-classification-model"
 version = "0.1.0"
 description = ""
 authors = ["steekam <waynewanyee@gmail.com>"]
@@ -9,6 +9,7 @@ python = "^3.8"
 fastapi = "^0.61.2"
 tensorflow = "^2.3.1"
 uvicorn = "^0.12.2"
+tensorflow-text = "^2.4.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
